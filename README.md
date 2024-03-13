@@ -127,3 +127,12 @@
 1) git clone https://flavio 
 
 # week03 
+
+## Create a dashboard
+
+1) ./pocketbase serve
+1) access it at 4321/_/
+1) create new users
+1) create new projects: complete the bootcamp, learn htmx, create a blog
+1) create new project mine: edit README, create a blog
+1) npm install pocketbase
