@@ -111,7 +111,7 @@
 
 1) go to /flavio/dev/bootcamp-2024
 1) npm create astro@latest
-1) app, empty, yes to dependencies, yes to typescript, stric, git
+1) app, empty, yes to dependencies, yes to typescript, strict, git
 1) cd ./app
 1) npm run dev
 1) pretty extension, settings, user:
@@ -128,11 +128,52 @@
 
 # week03 
 
-## Create a dashboard
+## 2. Create a dashboard
 
 1) ./pocketbase serve
 1) access it at 4321/_/
 1) create new users
 1) create new projects: complete the bootcamp, learn htmx, create a blog
 1) create new project mine: edit README, create a blog
-1) npm install pocketbase
+
+
+## 3 Start fetching data from pocketbase
+
+1. npm install pocketbase
+1. in src/pages/app/Dashboard.astro:  import pocketbase
+1. getfullList() method shows in the terminal app is running.
+
+## 4. Show the project list
+
+1. project.map( i => '<li>{i.name}</li>')
+1. 5 = Create layout for the app LayoutApp.astro
+1. 6 -  Show projects nicely: one card content
+1. at /src/components/app/project/ProjectCard.astro
+1. import ProjectCard into Dashboard
+1. 7 - Show the project's status
+1. in ProjectCard add status, style with the anchor tag pointing to /app/project/${project.id}
+1. PROBLEM: a statically generated HTML can not change if database changes, 
+1. In order to update the html a new build should be generated. We need to
+1. 9 - Enable server side rendering to update data in the html when data is updated in the database
+```
+npx astro add node
+npm install dotenv
+```
+
+## 11 - Add a way to create a new project from the app
+
+1. at src/components/app/projects/AddNewProjectCard.asto to add new project
+1. import AddNewProjectCard into Dashboard
+1. 12 - Create a modal container
+1. Add dialog element to LayoutApp
+1. In order to reuse modal create at src/pages/app/modals/project/new.astro
+
+## 13 - HTMX
+
+1. Use HTMX
+```
+npm install htmx.org
+```
+1. add script to LayoutApp.astro to import htmx.org
+1. 14 - show the modal
+1. at src/components/app/modals/ModalLayout.astro 
