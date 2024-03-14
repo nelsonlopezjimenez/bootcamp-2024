@@ -177,3 +177,8 @@ npm install htmx.org
 1. add script to LayoutApp.astro to import htmx.org
 1. 14 - show the modal
 1. at src/components/app/modals/ModalLayout.astro 
+1. use it (import) at src/pages/app/modals/new.astro
+1. 15 - Add the form to the modal
+1. We need an input field for the name, and cancel/add buttons
+1. Each one on its separated files
+1. 
