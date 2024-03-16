@@ -1,19 +1,20 @@
 ---
-import Pocketbase from "pocketbase";
+// import Pocketbase from "pocketbase";
 import LayoutApp from "@layouts/LayoutApp.astro";
 import ProjectCard from "@components/app/projects/ProjectCard.astro";
 import AddNewProjectCard from '@components/app/projects/AddNewProjectCard.astro'
 import { getProjects } from '@data/pocketbase'
-import { addProject } from "@data/pocketbase";
+// import { addProject } from "@data/pocketbase";
 
 const projects = await getProjects()
-const oneproject = await addProject()
-// const pb = new Pocketbase("http://127.0.0.1:8090");
+---
+<!-- // const one = await addProject("ALBACA")
 
+// const pb = new Pocketbase("http://127.0.0.1:8090");
 // const projects = await pb.collection("projects").getFullList();
 
-console.log(projects);
----
+// console.log(projects); -->
+
 
 <LayoutApp title="Dashboard">
     <div class="py-10 mx-auto text-white max-w-7xl">
@@ -25,6 +26,6 @@ console.log(projects);
         <ul class="grid gap-6 sm:grid-cols-2">
             {projects.map((project) => <ProjectCard project={project} />)}
         </ul>
-        <AddNewProjectCard project={oneproject}/>
+        <AddNewProjectCard />
     </div>
 </LayoutApp>
