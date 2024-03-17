@@ -181,4 +181,74 @@ npm install htmx.org
 1. 15 - Add the form to the modal
 1. We need an input field for the name, and cancel/add buttons
 1. Each one on its separated files
-1. 
+
+# SRC/PAGES folder
+
+```
+pages
+|_app
+  |_api
+  | |_projects.astro
+  | |
+  | |_project
+  |   |_[project_id].astro
+  |   |_[project_id]
+  |     |_task.astro
+  |     |
+  |     |_task
+  |       |_[task_id].astro
+  |
+  |_modals
+  | |_project
+  |   |_new.astro
+  |   |
+  |   |_[project.id]
+  |     |_edit.astro
+  |     |_task
+  |       |_task.astro
+  |       |_new.astro
+  |
+  |_project
+    |_[project_id].astro
+
+```
+## 15 - Add the form to the modal\
+
+1. in ModalLayout.astro
+1. import pages/app/modals/new.astro
+1. in src/components/app/modal: buttons and inputField
+1. import pages/app/modals/project/new.astro
+
+## 16 - Close modal when outside of it
+```
+npm install alpine
+npm install --dev @types/alpinejs
+```
+1. import in src/layouts/LayoutApp Alpine.start()
+1. use in ModalLayout.astro
+
+## 17 - Create new project
+1. move db to ~/data/pocketbase.ts
+```
+npm install --save-dev @typas/node
+```
+1. edit in pocketbase.js getProjects(), use in dashboard.astro
+1. 18 - Single project page: display one project
+1. in pages/app/project/[project_id].astro => URL route /app/project/:project_id
+1. add getProject(id) => getOneProject(id)
+1. 19 - Button to add task to a project
+1. in [project_id].astro
+1. in components/app/tasks ButtonAddTask.astro
+1. import to [project_id].astro
+1. page route /modals/project/${project_id}/task/new
+1. Create the file src/pages/app/modals/project/[project_id]/task/new.astro
+1. ROUTE:  hx-post={`/app/api/project/${project_id}/task`}> as src/pages/app/api/project/[project_id]/task.astro
+1. in pocketbase.ts edit addTask()
+
+## 20 - List all tasks from a project
+
+1. edit getTasks(project_id) in pocketbase.ts
+1. use this in src/pages/app/project/[project_id].astro
+1. conditional rendering "no tasks" OR list of tasks. The color is white, so item not seen right away.
+
+

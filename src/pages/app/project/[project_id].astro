@@ -12,6 +12,9 @@ if (!project) {
 }
 
 const tasks = await getTasks(project_id)
+
+// console.log('pages/app/project/[project_id].astro line 16')
+// console.log(tasks.map(t => t))
 ---
 
 <LayoutApp title={project.name}>
