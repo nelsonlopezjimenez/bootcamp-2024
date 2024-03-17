@@ -2,6 +2,7 @@
 import LayoutApp from '@layouts/LayoutApp.astro'
 import { getProject, getTasks } from '@data/pocketbase'
 import ButtonAddNewTask from '@components/app/tasks/ButtonAddNewTask.astro'
+import HamburgerMenuButton from '@components/app/HamburgerMenuButton.astro'
 
 const { project_id = '' } = Astro.params
 
@@ -23,6 +24,9 @@ const tasks = await getTasks(project_id)
     <!-- <div
       class='rounded-lg bg-zinc-900 px-5 py-4 sm:py-2.5 text-xl sm:text-3xl md:text-5xl text-white uppercase text-center font-extrabold'> changed in mod4 -->
     <div  class='rounded-lg bg-zinc-900 px-5 py-4 sm:py-2.5 text-xl sm:text-2xl md:text-3xl text-white uppercase text-center font-extrabold'>
+      <div class='sm:hidden'>
+        <HamburgerMenuButton />
+      </div>
       {project.name}
     </div>
 
@@ -31,6 +35,7 @@ const tasks = await getTasks(project_id)
         class='p-10 text-white rounded-lg shadow bg-zinc-100 dark:bg-zinc-800'>
         <h2
           class='pb-10 text-xl font-black text-center uppercase text-zinc-800 dark:text-white'>
+
           Tasks to do
         </h2>
 
