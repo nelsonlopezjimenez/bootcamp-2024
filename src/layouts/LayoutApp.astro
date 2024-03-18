@@ -1,5 +1,6 @@
 ---
 import Sidebar from "@components/app/Sidebar.astro";
+import '@src/app.css'
 const { title = "Secretplan" } = Astro.props;
 ---
 
@@ -27,38 +28,39 @@ const { title = "Secretplan" } = Astro.props;
 
             htmx.process(document.body);
         </script>
-        <style>
+        <!-- <style>
             dialog::backdrop {
                 background-color: rgba(0, 0, 0, 0.7);
                 backdrop-filter: blur(3px);
             }
-        </style>
+            [x-cloak] {
+                /* fix alpine js flicker on load */
+                display: none;
+            }
+        </style> -->
     </head>
 
-   <!-- <body> -->
-    <body x-data>
-        <main
-          class='min-h-screen dark:bg-black dark:text-white'>
-          <div class='max-w-5xl px-4 py-4 mx-auto'>
-            <dialog></dialog>
-    
-            <div class='flex sm:space-x-6'>
-              <div class='hidden w-1/3 sm:block'>
-                <Sidebar />
-              </div>
-              <!-- <div class='w-full sm:w-2/3'>
+    <!-- <body> -->
+    <body x-data hx-boost="true">
+        <main class="min-h-screen dark:bg-black dark:text-white">
+            <div class="max-w-5xl px-4 py-4 mx-auto">
+                <dialog></dialog>
+
+                <div class="flex sm:space-x-6">
+                    <div class="hidden w-1/3 sm:block">
+                        <Sidebar />
+                    </div>
+                    <!-- <div class='w-full sm:w-2/3'>
                 <slot />
               </div> -->
-              <div
-                class='w-full sm:w-2/3'
-                x-data='{showMenu : false}'>
-                <div x-show='showMenu'>
-                  <Sidebar />
+                    <div class="w-full sm:w-2/3" x-data="{showMenu : false}">
+                        <div x-show="showMenu" x-cloak>
+                            <Sidebar />
+                        </div>
+                        <slot />
+                    </div>
                 </div>
-                <slot />
-              </div>
             </div>
-          </div>
         </main>
-      </body>
+    </body>
 </html>
