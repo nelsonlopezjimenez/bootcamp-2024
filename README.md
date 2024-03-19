@@ -251,4 +251,132 @@ npm install --save-dev @typas/node
 1. use this in src/pages/app/project/[project_id].astro
 1. conditional rendering "no tasks" OR list of tasks. The color is white, so item not seen right away.
 
+## MOD4
 
+1. .
+1. v
+1.
+```
+C:\USERS\CREEPERPANDATREX\DOCUMENTS\2024\_MYGITHUB\BOOTCAMP-2024\SRC
+├───components
+│   ├───app
+│   │   ├───modals
+│   │   ├───projects
+│   │   └───tasks
+│   └───site
+│       ├───common
+│       └───homepage
+│           └───FeaturesIcons
+├───content
+│   └───blog
+├───data
+├───layouts
+└───pages
+    ├───app
+    │   ├───api
+    │   │   └───project
+    │   │       └───[project_id]
+    │   │           └───task
+    │   ├───modals
+    │   │   └───project
+    │   │       └───[project_id]
+    │   │           └───task
+    │   └───project
+    └───blog
+```
+1. / 
+1. .```
+C:\USERS\CREEPERPANDATREX\DOCUMENTS\2024\_MYGITHUB\BOOTCAMP-2024\SRC
+│   app.css
+│   env.d.ts
+│   site.css
+│
+├───components
+│   ├───app
+│   │   │   HamburgerMenuButton.astro
+│   │   │   Sidebar.astro
+│   │   │
+│   │   ├───modals
+│   │   │       ButtonCancel.astro
+│   │   │       ButtonSubmit.astro
+│   │   │       InputField.astro
+│   │   │       ModalLayout.astro
+│   │   │
+│   │   ├───projects
+│   │   │       AddNewProjectCard.astro
+│   │   │       ProjectCard.astro
+│   │   │       ProjectStatus.astro
+│   │   │
+│   │   └───tasks
+│   │           ButtonAddNewTask.astro
+│   │
+│   └───site
+│       ├───common
+│       │       Footer.astro
+│       │       TopBar.astro
+│       │
+│       └───homepage
+│           │   FAQ.astro
+│           │   Features.astro
+│           │   Hero.astro
+│           │   Pricing.astro
+│           │   Screenshot.astro
+│           │   Testimonial.astro
+│           │
+│           └───FeaturesIcons
+│                   Fast.astro
+│                   Multiplayer.astro
+│                   Person.astro
+│                   Team.astro
+│
+├───content
+│   │   config.ts
+│   │
+│   └───blog
+│           hello-world.md
+│
+├───data
+│       pocketbase-types.ts
+│       pocketbase.ts
+│
+├───layouts
+│       LayoutApp.astro
+│       LayoutSite.astro
+│       MarkdownLayout.astro
+│
+└───pages
+    │   blog.astro
+    │   index.astro
+    │
+    ├───app
+    │   │   dashboard.astro
+    │   │
+    │   ├───api
+    │   │   │   projects.astro
+    │   │   │
+    │   │   └───project
+    │   │       │   [project_id].astro
+    │   │       │
+    │   │       └───[project_id]
+    │   │           │   task.astro
+    │   │           │
+    │   │           └───task
+    │   │                   [task_id].astro
+    │   │
+    │   ├───modals
+    │   │   └───project
+    │   │       │   new.astro
+    │   │       │
+    │   │       └───[project_id]
+    │   │           │   edit.astro
+    │   │           │
+    │   │           └───task
+    │   │                   new.astro
+    │   │                   task.astro
+    │   │
+    │   └───project
+    │           [project_id].astro
+    │
+    └───blog
+            [slug].astro
+```

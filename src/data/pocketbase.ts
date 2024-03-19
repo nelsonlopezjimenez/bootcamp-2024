@@ -2,7 +2,9 @@ import PocketBase from 'pocketbase'
 import type {
   TypedPocketBase,
   ProjectsResponse,
+  ProjectsRecord,
 } from '@src/data/pocketbase-types'
+// Note: we’ll have to re-run the npx pocketbase-typegen command we used above any time we edit the collections, as they are not kept in sync automatically.
 
 function getStatus(project: ProjectsResponse) {
 // function getStatus(project: ) {
@@ -14,8 +16,7 @@ function getStatus(project: ProjectsResponse) {
 		case "started":
 			return 5;
 		case "in progress":
-			return 4;
-		case "almost finished":
+
 			return 3;
 		case "ongoing":
 			return 2;
@@ -48,11 +49,22 @@ export async function addProject(name: string) {
 
   return newProject
 }
+export async function updateProject(
+  id: string,
+  data: ProjectsRecord
+) {
+  await pb.collection('projects').update(id, data)
+}
 export async function getProject(id: string) {
   const project = await pb.collection('projects').getOne(id)
 
   return project
 }
+
+export async function deleteProject(id: string) {
+  await pb.collection('projects').delete(id)
+}
+
 export async function addTask(
   project_id: string,
   text: string

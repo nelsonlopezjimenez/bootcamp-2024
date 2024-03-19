@@ -3,7 +3,8 @@ export const partial = true
 
 import { deleteProject, updateProject } from '@data/pocketbase'
 import { ProjectsStatusOptions } from '@data/pocketbase-types'
-const { project_id } = Astro.params
+
+const { project_id } = Astro.params   // URL /app/api/project/${project_id}
 
 if (!project_id) {
   return new Response(null, {
