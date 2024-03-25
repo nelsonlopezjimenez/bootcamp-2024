@@ -1,0 +1,56 @@
+---
+import { getStarredTasks, getTasks } from "@data/pocketbase"
+import ButtonStarTask from "../tasks/ButtonStarTask.astro"
+import { getStaticPaths } from "@src/pages/blog/[slug].astro"
+
+
+const { project } = Astro.props
+
+
+console.log('PROJECTCARDStarred DOT ASTRO: LINE 27')
+// console.log(Astro.props)
+console.log(project)
+console.log('============> ' + project.id)
+// const tasks = await getTasks({ project, done });
+const tasks = await getStarredTasks();
+
+
+console.log('PROJECTCARDStarred DOT ASTRO: LINE 35')
+const starredTasks = tasks.filter(t => t.starred === true)
+console.log(starredTasks.map(t => t.text))
+---
+<style>
+    .bg-stripes-darkgray-yellow {
+      background-image: repeating-linear-gradient(
+        45deg,
+        #1f2937, 
+        #1f2937 25px, 
+        #f6e711 25px, 
+        #f6e711 50px
+      );
+    }
+  
+    .dashed-border-top {
+      position: relative;
+      background-image: repeating-linear-gradient(
+        to right,
+        currentColor,
+        currentColor 7px,
+        transparent 7px,
+        transparent 20px
+      );
+      background-size: 100% 2px;
+      background-position: top;
+      background-repeat: no-repeat;
+      border-top: 1px solid transparent;
+    }
+  </style>
+
+    <div>
+      <h2
+        class='text-lg font-bold truncate bg-zinc-800'>
+       {starredTasks.map(t => t.text)} {project.name}
+      </h2>
+    </div>
+
+  

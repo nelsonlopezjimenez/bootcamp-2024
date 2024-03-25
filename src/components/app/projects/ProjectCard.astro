@@ -1,5 +1,11 @@
 ---
+import { getTasks } from "@data/pocketbase"
+import ButtonStarTask from "../tasks/ButtonStarTask.astro"
+
+
 const { project } = Astro.props
+
+
 export function projectStatus(status: string) {
   switch (status) {
     case 'started':
@@ -20,6 +26,10 @@ export function projectStatus(status: string) {
       return ' w-full bg-zinc-400 rounded-br-lg '
   }
 }
+console.log('PROJECTCARD DOT ASTRO: LINE 27')
+// console.log(Astro.props)
+// console.log(project)
+// console.log(project.id)
 ---
 <style>
     .bg-stripes-darkgray-yellow {
@@ -47,6 +57,23 @@ export function projectStatus(status: string) {
       border-top: 1px solid transparent;
     }
   </style>
+ <!-- {
+  tasks.map((task) => (
+    <li>
+      <div class="flex justify-between bg-blue-800 space-x-4 items-center">
+
+        
+        <div>
+          <ButtonStarTask active={true} task={task} />
+        </div>
+
+
+
+      </div>
+    </li>
+  ))
+} -->
+</ul>
 <li
   class='text-zinc-800 dark:text-white border dark:border-none rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 hover:dark:bg-zinc-700'>
   <a href={`/app/project/${project.id}`}>
