@@ -3,6 +3,7 @@ import type {
   TypedPocketBase,
   ProjectsResponse,
   ProjectsRecord,
+  TasksRecord
 } from '@src/data/pocketbase-types'
 // Note: we’ll have to re-run the npx pocketbase-typegen command we used above any time we edit the collections, as they are not kept in sync automatically.
 
@@ -76,14 +77,37 @@ export async function addTask(
 
   return newTask
 }
-export async function getTasks(project_id: string) {
+export async function getStarredTasks(){
+  const options = {filter: '',}
+  let filter = `starred = true`
+ 
+
+  options.filter = filter
+  const tasks = await pb.collection('tasks').getFullList(options)
+  return tasks
+}
+export async function getTasks({project_id = null, done = false,}) {
   const options = {
-    filter: `project = "${project_id}"`
+    // filter: `project = "${project_id}"`,
+    filter: '',
   }
+  let filter = `completed = ${done}`
+  filter += ` && project = "${project_id}"`
+
+  options.filter = filter
 
   const tasks = await pb
     .collection('tasks')
     .getFullList(options)
 
   return tasks
+}
+export async function deleteTask(id: string) {
+  await pb.collection('tasks').delete(id)
+}
+
+export async function updateTask(id: string, data: TasksRecord) {
+  console.log('pocketbase.ts line 95')
+  console.log(data)
+  await pb.collection('tasks').update(id, data)
 }

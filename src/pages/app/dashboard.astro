@@ -2,6 +2,7 @@
 // import Pocketbase from "pocketbase";
 import LayoutApp from "@layouts/LayoutApp.astro";
 import ProjectCard from "@components/app/projects/ProjectCard.astro";
+import ProjectCardStarred from "@components/app/projects/ProjectCardStarred.astro";
 import AddNewProjectCard from "@components/app/projects/AddNewProjectCard.astro";
 import { getProjects } from "@data/pocketbase";
 import HamburgerMenuButton from "@components/app/HamburgerMenuButton.astro";
@@ -35,6 +36,7 @@ const projects = await getProjects();
         </div>
         
         <ul class="grid gap-6 sm:grid-cols-2">
+            {projects.map((project) => <ProjectCardStarred project={project} />)}
             {projects.map((project) => <ProjectCard project={project} />)}
         </ul>
         <AddNewProjectCard />

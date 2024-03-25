@@ -251,11 +251,53 @@ npm install --save-dev @typas/node
 1. use this in src/pages/app/project/[project_id].astro
 1. conditional rendering "no tasks" OR list of tasks. The color is white, so item not seen right away.
 
+## MOD3 CONTENT
+```
+1:	Introduction to the module
+2:	Create a dashboard
+3:	Start fetching data from PocketBase
+4:	Show the projects list on the page
+5:	Create a layout for the app
+6:	Show projects nicely
+7:	Show the project status
+8:	The problem we’re facing with static site rendering
+9:	Enable SSR mode in Astro
+10:	SSR vs SSG mode
+11:	Add a way to create a new project from the app
+12:	Create a modal container
+13:	Time to introduce htmx
+14:	Show the modal
+15:	Add the form to the modal
+16:	Close the modal when we click outside of it
+17:	Create the new project
+18:	Create the single project page
+19:	Add a way to add tasks to a project
+20:	List the project tasks
+21:	Troubleshooting
+22:	Wrapping up
+```
+
 ## MOD4
 
-1. .
-1. v
-1.
+1. Add a sidebar: 
+1. ![add sidebar](/public/_image.webp)
+1. @component Sidebar.astro, include in LayoutApp.astro. Fixt titles in dashboard.astro
+1. fix in single project view at pages/app/project/[project_id].astro
+1. 3 - List projects in sidebar
+1. 4 - Add hamburguer menu using Alpine x-data='{showMenu:false}'
+1. set autocancellation off. Create a button in @components, include it in dashboard.astro
+1. 5 - Add x-cloak to prevent flickering
+1. 6 - create app.css styles tag from LayoutApp.astro
+1. 9 - fix typescript error. Done with node 20.11 in cmd because gitbash was 18.16 with no change
+1. 11 - Delete a project: BUTTON tag hx-delete={'/app/api/project/${project_id}'}; hx-confirm=''
+1. 12 - Edit project status @component/project/status.astro: hx-put, hx-swap, hx-vals; used in page/app/project/[project_id].astro
+1. 13 - PUT project name
+1. 14 - Delete a task
+1. 15 - Add a way to mark task as done: IconCheck.astro; BUTTON in FORM 
+1. 16 - Show done taks in a different list: one list task-todo, another task-done
+1. 17 - Star a task: BUTTON starTask in FORM hx-trigger='click' 
+1. 18 - Show starred tasks in dashboard
+
 ```
 C:\USERS\CREEPERPANDATREX\DOCUMENTS\2024\_MYGITHUB\BOOTCAMP-2024\SRC
 ├───components
@@ -285,7 +327,8 @@ C:\USERS\CREEPERPANDATREX\DOCUMENTS\2024\_MYGITHUB\BOOTCAMP-2024\SRC
     └───blog
 ```
 1. / 
-1. .```
+1. 
+```
 C:\USERS\CREEPERPANDATREX\DOCUMENTS\2024\_MYGITHUB\BOOTCAMP-2024\SRC
 │   app.css
 │   env.d.ts
@@ -379,19 +422,29 @@ C:\USERS\CREEPERPANDATREX\DOCUMENTS\2024\_MYGITHUB\BOOTCAMP-2024\SRC
     │
     └───blog
             [slug].astro
+```
 
-
-
-# GIT SYNTAX
-1. # Start a new feature
-git checkout -b new-feature main
-# Edit some files
-git add <file>
-git commit -m "Start a feature"
-# Edit some files
-git add <file>
-git commit -m "Finish a feature"
-# Merge in the new-feature branch
-git checkout main
-git merge new-feature
-git branch -d new-feature
+1. CONTENT
+```
+1:	Introduction to the module
+2:	Add a sidebar
+3:	List projects in the sidebar
+4:	Add hamburger menu to show projects list on mobile
+5:	Add x-cloak to prevent flicker
+6:	Moving styles to app.css
+7:	Use hx-boost to smooth navigation
+8:	Sort projects by status
+9:	Fix the TS errors
+10:	Use the logo font for the pages title
+11:	Delete a project
+12:	Allow to edit the project status
+13:	Let people edit the project’s name.
+14:	Delete a task
+15:	Add a way to mark tasks as done
+16:	Show “done” tasks in a different list
+17:	Star a task
+18:	Show starred tasks in the dashboard
+19:	Edit the task text
+20:	Wrapping up
+```
+1. Star a task.

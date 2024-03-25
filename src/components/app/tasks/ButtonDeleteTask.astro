@@ -1,0 +1,28 @@
+---
+import IconDelete from '@components/app/icons/IconDelete.astro'
+const {task} = Astro.props
+console.log('comp/app/tasks/ButtonDelete.astro line 3')
+console.log(Astro.props);
+---
+
+<button
+  aria-label='Delete task'
+  class='focus:ring-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 '
+  hx-swap='outerHTML'
+  hx-confirm='Are you sure?'
+  hx-target='closest li'
+  hx-delete={`/app/api/project/${task.project}/task/${task.id}`}>
+
+  <IconDelete />
+</button>
+
+
+<!-- <div class='w-full mx-auto text-center'>
+  <button
+    type='button'
+    class='inline-flex items-center justify-center px-6 py-2 text-sm font-bold text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 select-none'
+    hx-delete=`/app/modals/project/${task.project}/task/${task.id}/`
+    hx-target='dialog'>
+    {`Delete a task ${task.project}/task/${task.id}`}` 
+  </button>
+</div> -->
