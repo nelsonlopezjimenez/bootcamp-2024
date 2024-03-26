@@ -3,29 +3,30 @@ import type {
   TypedPocketBase,
   ProjectsResponse,
   ProjectsRecord,
-  TasksRecord
+  TasksRecord,
+  TasksResponse,
 } from '@src/data/pocketbase-types'
 // Note: we’ll have to re-run the npx pocketbase-typegen command we used above any time we edit the collections, as they are not kept in sync automatically.
 
 function getStatus(project: ProjectsResponse) {
-// function getStatus(project: ) {
-	switch (project.status) {
-		case "not started":
-			return 7;
-		case "on hold":
-			return 6;
-		case "started":
-			return 5;
-		case "in progress":
+  // function getStatus(project: ) {
+  switch (project.status) {
+    case "not started":
+      return 7;
+    case "on hold":
+      return 6;
+    case "started":
+      return 5;
+    case "in progress":
 
-			return 3;
-		case "ongoing":
-			return 2;
-		case "done":
-			return 1;
-		default:
-			return 0;
-	}
+      return 3;
+    case "ongoing":
+      return 2;
+    case "done":
+      return 1;
+    default:
+      return 0;
+  }
 }
 export const pb = new PocketBase(import.meta.env.POCKETBASE_URL ||
   process.env.POCKETBASE_URL) as TypedPocketBase
@@ -38,7 +39,7 @@ export async function getProjects() {
   const projects = await pb
     .collection('projects')
     .getFullList()
-  return projects.sort((a,b) => getStatus(a) - getStatus(b))
+  return projects.sort((a, b) => getStatus(a) - getStatus(b))
 }
 
 export async function addProject(name: string) {
@@ -77,16 +78,34 @@ export async function addTask(
 
   return newTask
 }
-export async function getStarredTasks(){
-  const options = {filter: '',}
+// export async function getStarredTasks() {
+export async function getStarredTasks(): Promise<
+  TasksResponse<TexpandProject>[]
+> {
+  const options = {
+    sort: '-starred_on',
+    filter: 'starred = true && completed = false',
+    expand: 'project',
+  }
+
+  let tasks: TasksResponse<TexpandProject>[] = []
+  tasks = await pb
+    .collection('tasks')
+    .getFullList(options)
+
+  return tasks
+}
+export async function getStarredTasks1() {  // mine
+  const options = { filter: '', }
   let filter = `starred = true`
- 
+
 
   options.filter = filter
   const tasks = await pb.collection('tasks').getFullList(options)
   return tasks
 }
-export async function getTasks({project_id = null, done = false,}) {
+export async function getTasks({ project_id = null, done = false, 
+}): Promise<TasksResponse<TexpandProject>[]>  {
   const options = {
     // filter: `project = "${project_id}"`,
     filter: '',
@@ -95,8 +114,9 @@ export async function getTasks({project_id = null, done = false,}) {
   filter += ` && project = "${project_id}"`
 
   options.filter = filter
+  let tasks: TasksResponse<TexpandProject>[] = []
 
-  const tasks = await pb
+  tasks = await pb
     .collection('tasks')
     .getFullList(options)
 

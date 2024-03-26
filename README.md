@@ -447,4 +447,25 @@ C:\USERS\CREEPERPANDATREX\DOCUMENTS\2024\_MYGITHUB\BOOTCAMP-2024\SRC
 19:	Edit the task text
 20:	Wrapping up
 ```
-1. Star a task.
+1. 17 - Star a task.
+1. 18 - show starred tasks in dashboard
+1. First tried to create a ProjectCard only for starred but the starred tasks repeated the same number of projects. The original uses TaskList but passing a starred boolean flag together with completed flag as a prop
+1. 19 - Edit the task text: it is not working, even with mod4 downloaded from flaviocopes github account
+1. Modified the package.json file to add "npm run dev --host" so the server is available over the network.
+
+# MOD5
+
+1. 
+```
+1:	Introduction to the module
+2:	Add signup page
+3:	Implement logout
+4:	Redirect /app to /app/dashboard
+5:	Login protect all routes and APIs
+6:	List user-specific data
+7:	New data will be associated with the current user
+8:	Forgot password
+9:	Email validation
+10:	Adding a “captcha” to auth forms with Cloudflare Turnstile
+```
+1. .

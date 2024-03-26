@@ -7,6 +7,8 @@ import AddNewProjectCard from "@components/app/projects/AddNewProjectCard.astro"
 import { getProjects } from "@data/pocketbase";
 import HamburgerMenuButton from "@components/app/HamburgerMenuButton.astro";
 import ProjectStatus from "@components/app/projects/ProjectStatus.astro";
+import TasksList from "@components/app/tasks/TasksList.astro";
+
 // import  Sidebar from '@components/app/Sidebar.astro'
 // import { addProject } from "@data/pocketbase";
 
@@ -34,9 +36,13 @@ const projects = await getProjects();
             </div>
             Projects
         </div>
-        
+
+        <div id="starred-tasks-list">
+            <TasksList starred={true} />
+        </div>
+
         <ul class="grid gap-6 sm:grid-cols-2">
-            {projects.map((project) => <ProjectCardStarred project={project} />)}
+            <!-- {projects.map((project) => <ProjectCardStarred project={project} />)} temporary repeated as many times as projects-->
             {projects.map((project) => <ProjectCard project={project} />)}
         </ul>
         <AddNewProjectCard />
