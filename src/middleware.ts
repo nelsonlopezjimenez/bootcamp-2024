@@ -8,7 +8,7 @@
 // previous code could be on each route to be protected. Too many
 // BETTER....
 import { defineMiddleware } from 'astro/middleware'
-import { isLoggedIn } from '@lib/auth'
+import { isLoggedIn, isUserVerified } from '@lib/auth'
 
 export const onRequest = defineMiddleware(
   async (context, next) => {
@@ -23,6 +23,20 @@ export const onRequest = defineMiddleware(
         return context.redirect('/login')
       }
     }
+
+
+    if (await isLoggedIn(context.request)) {
+        const verified = await isUserVerified()
+        if (!verified) {
+          if (context.url.pathname.startsWith('/app')) {
+            return context.redirect('/verify')
+          }
+        } else {
+          if (context.url.pathname === '/verify') {
+            return context.redirect('/app/dashboard')
+          }
+        }
+      }
 
     return next()
   }

@@ -468,4 +468,18 @@ C:\USERS\CREEPERPANDATREX\DOCUMENTS\2024\_MYGITHUB\BOOTCAMP-2024\SRC
 9:	Email validation
 10:	Adding a “captcha” to auth forms with Cloudflare Turnstile
 ```
-1. .
+1. Signup page route '/signup' get and post from a form, local validation,
+1. server side validation in src/lib/auth.ts
+1. Once validated createUser(), loginUser(), setCookieRedirectToDashboard()
+1. Only if user is not logged, so check if isLoggedIn()
+1. Go to pocketbase. On users and projects go to setting, api rules and set the rules
+1. Implemented logout: by deleting cookie or creating if !isLoggedIn() redirect to /login
+and set-Cookie to beginning of epoch
+1. redirect /app to /app/dashboard in astro.config.mjs
+1. Protect routes after login: Add a function to all possible routes (nope)
+1. OR create middleware as src/middleware.ts with defineMiddleware and isLoggedIn
+1. Check only what it belongs to the current user. Not possible to do anything to 
+another user's content
+1. Request password reset: only by using smtp fake not done
+1. Validate email and allow to look things only if isLoggedIn() otherwise redirect to /login
+1. Captcha not done
