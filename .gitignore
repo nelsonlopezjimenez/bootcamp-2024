@@ -1,3 +1,7 @@
+# added by NDL
+*.zip
+*.7z
+
 # build output
 dist/
 # generated types
