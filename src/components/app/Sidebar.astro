@@ -3,7 +3,7 @@ import { getProjects } from '@data/pocketbase';
 import { getUserUsername } from '@lib/auth';
 
 const projects = await getProjects();
-const rawString = 'Hello <strong>World</strong>';
+const rawString = 'Hello World and <strong>World</strong>';
 ---
 
 <aside class="text-white">
@@ -29,10 +29,10 @@ const rawString = 'Hello <strong>World</strong>';
         </svg>
       </button>
       <a href="/app/dashboard">SECRETPLAN</a>
-      <a href="/app/dashboard"><h3>{rawString}</h3></a>
-      <a href="/app/dashboard"><h3 set:html={rawString} /></a>
     </div>
   </div>
+  <a href="/app/dashboard"><h3 style="color:black">{rawString}</h3></a>
+  <a href="/app/dashboard"><h3 set:html={rawString} style="color:black" /></a>
 
   <div class="mb-6 rounded-lg bg-zinc-800">
     <a
