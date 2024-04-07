@@ -1,6 +1,7 @@
 # added by NDL
 *.zip
 *.7z
+Module*
 
 # build output
 dist/
