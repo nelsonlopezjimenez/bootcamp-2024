@@ -4,6 +4,7 @@ import ButtonDeleteTask from "@components/app/tasks/ButtonDeleteTask.astro";
 import ButtonCompleteTask from "@components/app/tasks/ButtonCompleteTask.astro";
 import ButtonStarTask from "@components/app/tasks/ButtonStarTask.astro";
 import TaskText from "@components/app/tasks/TaskText.astro";
+import TaskImages from "./TaskImages.astro";
 
 const { project_id, done, starred } = Astro.props;
 
@@ -31,31 +32,35 @@ if (starred) {
     {
       tasks.map((task) => (
         <li>
-          <div class="flex justify-between bg-blue-800 space-x-4 items-center">
-            <div>
-              <ButtonCompleteTask task={task} />
-            </div>
-
-            <div>
-              <ButtonStarTask task={task} />
-            </div>
-
-            <TaskText task={task} />
-
-            {starred ? (
-              <div>
-                <a href={`/app/project/${task.project}`}>
-                  <span class="border mt-0 py-0.5 px-2 self-start rounded-md bg-zinc-800 text-sm font-bold hidden sm:block">
-                    {task.expand?.project?.name}
-                  </span>
-                </a>
-              </div>
-            ) : (
-              <div>
-                <ButtonDeleteTask task={task} />
-              </div>
-            )}
+          <div class='flex justify-between gap-x-4'>
+          <div class='align-top'>
+            <ButtonCompleteTask task={task} />
           </div>
+          <div class='flex-1 mt-1'>
+            <div class='flex flex-row'>
+              <div class='pr-2'>
+                <ButtonStarTask task={task} />
+              </div>
+              <TaskText task={task} />
+              {starred ? (
+                <div>
+                  <a href={`/app/project/${task.project}`}>
+                    <span class='border mt-0 py-0.5 px-2 self-start rounded-md bg-zinc-800 text-sm font-bold hidden sm:block'>
+                      {task.expand?.project?.name}
+                    </span>
+                  </a>
+                </div>
+              ) : (
+                <div>
+                  <ButtonDeleteTask task={task} />
+                </div>
+              )}
+            </div>
+            <div>
+              <TaskImages task={task} />
+            </div>
+          </div>
+        </div>
         </li>
       ))
     }

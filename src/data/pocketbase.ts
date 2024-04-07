@@ -8,6 +8,29 @@ import type {
 } from '@src/data/pocketbase-types'
 // Note: we’ll have to re-run the npx pocketbase-typegen command we used above any time we edit the collections, as they are not kept in sync automatically.
 
+export function processImages(task: TasksResponse) {
+  type ImageItem = {
+    name: string
+    url: string
+    url_larger: string
+  }
+
+  const images: ImageItem[] = []
+
+  task.images?.map((image: string) => {
+    images.push({
+      name: image,
+      url: pb.files.getUrl(task, image, {
+        thumb: '0x200',
+      }),
+      url_larger: pb.files.getUrl(task, image, {
+        thumb: '0x800',
+      }),
+    })
+  })
+
+  return images
+}
 function getStatus(project: ProjectsResponse) {
   // function getStatus(project: ) {
   switch (project.status) {
